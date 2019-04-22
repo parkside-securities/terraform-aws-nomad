@@ -69,8 +69,8 @@ module "servers" {
   ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
   user_data = "${data.template_file.user_data_server.rendered}"
 
-  vpc_id     = "${data.aws_vpc.default.id}"
-  subnet_ids = "${data.aws_subnet_ids.default.ids}"
+  vpc_id     = "${var.vpc_id}"
+  subnet_ids = "${var.subnet_ids}"
 
   # To make testing easier, we allow requests from any IP address here but in a production deployment, we strongly
   # recommend you limit this to the IP address ranges of known, trusted servers inside your VPC.
@@ -149,8 +149,8 @@ module "clients" {
   ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
   user_data = "${data.template_file.user_data_client.rendered}"
 
-  vpc_id     = "${data.aws_vpc.default.id}"
-  subnet_ids = "${data.aws_subnet_ids.default.ids}"
+  vpc_id     = "${var.vpc_id}"
+  subnet_ids = "${var.subnet_ids}"
 
   # To make testing easier, we allow Consul and SSH requests from any IP address here but in a production
   # deployment, we strongly recommend you limit this to the IP address ranges of known, trusted servers inside your VPC.
@@ -200,14 +200,5 @@ data "template_file" "user_data_client" {
 # accessible from the public Internet. In a production deployment, we strongly recommend deploying into a custom VPC
 # and private subnets.
 # ---------------------------------------------------------------------------------------------------------------------
-
-data "aws_vpc" "default" {
-  default = "${var.vpc_id == "" ? true : false}"
-  id      = "${var.vpc_id}"
-}
-
-data "aws_subnet_ids" "default" {
-  vpc_id = "${data.aws_vpc.default.id}"
-}
 
 data "aws_region" "current" {}
