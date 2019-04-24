@@ -32,7 +32,7 @@ data "aws_ami" "nomad_consul" {
   most_recent = true
 
   # If we change the AWS Account in which test are run, update this value.
-  owners = ["562637147889"]
+  owners = ["amazon"]
 
   filter {
     name   = "virtualization-type"
@@ -46,7 +46,7 @@ data "aws_ami" "nomad_consul" {
 
   filter {
     name   = "name"
-    values = ["nomad-consul-docker-ubuntu-*"]
+    values = ["nomad-consul-docker-amazon-linux-*"]
   }
 }
 
