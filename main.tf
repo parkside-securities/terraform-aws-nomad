@@ -31,14 +31,22 @@ terraform {
 data "aws_ami" "nomad_consul" {
   most_recent = true
 
+  # If we change the AWS Account in which test are run, update this value.
+  owners = ["562637147889"]
+
   filter {
     name   = "virtualization-type"
     values = ["hvm"]
   }
 
   filter {
+    name   = "is-public"
+    values = ["true"]
+  }
+
+  filter {
     name   = "name"
-    values = ["nomad-consul-docker-amazon-linux-2019-02-06T16-12-53Z"]
+    values = ["nomad-consul-ubuntu-*"]
   }
 }
 
