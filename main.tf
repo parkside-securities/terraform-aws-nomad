@@ -46,7 +46,7 @@ data "aws_ami" "nomad_consul" {
 
   filter {
     name   = "name"
-    values = ["nomad-consul-ubuntu-*"]
+    values = ["nomad-consul-docker-ubuntu-*"]
   }
 }
 
