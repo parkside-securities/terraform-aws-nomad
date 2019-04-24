@@ -32,7 +32,7 @@ data "aws_ami" "nomad_consul" {
   most_recent = true
 
   # If we change the AWS Account in which test are run, update this value.
-  owners = ["aws-marketplace"]
+  owners = ["aws-community"]
 
   filter {
     name   = "virtualization-type"
