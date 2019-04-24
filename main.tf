@@ -58,7 +58,8 @@ module "servers" {
   cluster_tag_key   = "${var.cluster_tag_key}"
   cluster_tag_value = "${var.cluster_tag_value}"
 
-  ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
+  # ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
+  ami_id    = "ami-007bd928844a1ec32"
   user_data = "${data.template_file.user_data_server.rendered}"
 
   vpc_id     = "${var.vpc_id}"
@@ -138,7 +139,8 @@ module "clients" {
   max_size         = "${var.num_clients}"
   desired_capacity = "${var.num_clients}"
 
-  ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
+  #ami_id    = "${var.ami_id == "" ? data.aws_ami.nomad_consul.image_id : var.ami_id}"
+  ami_id    = "ami-007bd928844a1ec32"
   user_data = "${data.template_file.user_data_client.rendered}"
 
   vpc_id     = "${var.vpc_id}"
