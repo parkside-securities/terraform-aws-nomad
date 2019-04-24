@@ -40,11 +40,6 @@ data "aws_ami" "nomad_consul" {
   }
 
   filter {
-    name   = "is-public"
-    values = ["true"]
-  }
-
-  filter {
     name   = "name"
     values = ["nomad-consul-docker-amazon-linux-*"]
   }
