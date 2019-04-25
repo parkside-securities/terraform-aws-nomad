@@ -31,3 +31,8 @@ variable "serf_port" {
   description = "The port to use for Serf"
   default     = 4648
 }
+
+variable "fabio_webui_port" {
+  description = "The port to use for Fabio web UI"
+  default     = 9998
+}
