@@ -42,10 +42,20 @@ resource "aws_security_group_rule" "allow_serf_udp_inbound" {
   security_group_id = "${var.security_group_id}"
 }
 
-resource "aws_security_group_rule" "allow_fabio_webui_inbound" {
+resource "aws_security_group_rule" "allow_fabio_ui_inbound" {
   type        = "ingress"
-  from_port   = "${var.fabio_webui_port}"
-  to_port     = "${var.fabio_webui_port}"
+  from_port   = "${var.fabio_ui_port}"
+  to_port     = "${var.fabio_ui_port}"
+  protocol    = "tcp"
+  cidr_blocks = ["${var.allowed_inbound_cidr_blocks}"]
+
+  security_group_id = "${var.security_group_id}"
+}
+
+resource "aws_security_group_rule" "allow_fabio_lb_inbound" {
+  type        = "ingress"
+  from_port   = "${var.fabio_lb_port}"
+  to_port     = "${var.fabio_lb_port}"
   protocol    = "tcp"
   cidr_blocks = ["${var.allowed_inbound_cidr_blocks}"]
 
