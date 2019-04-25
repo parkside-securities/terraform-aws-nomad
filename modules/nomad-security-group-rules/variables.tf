@@ -32,7 +32,12 @@ variable "serf_port" {
   default     = 4648
 }
 
-variable "fabio_webui_port" {
+variable "fabio_ui_port" {
   description = "The port to use for Fabio web UI"
   default     = 9998
+}
+
+variable "fabio_lb_port" {
+  description = "The port to use for Fabio web UI"
+  default     = 9999
 }
